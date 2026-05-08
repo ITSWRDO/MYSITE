@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Hosting Guide | Raunak Kushwaha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: #0a0a0a; color: #fff; font-family: 'Outfit', sans-serif; margin: 0; }
+
+        .page-header {
+            padding: 120px 0 80px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .page-header h1 { font-size: clamp(2rem, 6vw, 3.5rem); margin-bottom: 1rem; }
+        .page-header p { color: #888; max-width: 600px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6; }
+
+        .back-link {
+            position: fixed; top: 2rem; left: 2rem; z-index: 100;
+            color: #888; text-decoration: none; font-weight: 600;
+            display: flex; align-items: center; gap: 8px; font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: #ffd700; }
+
+        .content { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
+
+        .block {
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .block:last-child { border-bottom: none; }
+
+        .block h2 {
+            font-size: 1.1rem; text-transform: uppercase; letter-spacing: 3px;
+            color: #ffd700; margin-bottom: 2rem; font-weight: 600;
+        }
+
+        .block p, .block li {
+            color: #aaa; line-height: 1.8; font-size: 1rem;
+        }
+
+        .stack-row {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem; margin-top: 1.5rem;
+        }
+        .stack-item {
+            background: #111; border: 1px solid #1a1a1a; border-radius: 12px;
+            padding: 1.5rem; text-align: center;
+        }
+        .stack-item .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #555; display: block; margin-bottom: 8px; }
+        .stack-item .value { font-weight: 700; color: #ffd700; font-size: 1rem; }
+
+        .cmd {
+            background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 10px;
+            padding: 1.2rem 1.5rem; margin: 1.2rem 0; font-family: 'Consolas', 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .cmd .top { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.75rem; color: #555; text-transform: uppercase; letter-spacing: 1px; }
+        .cmd code { color: #ffd700; font-size: 0.9rem; white-space: pre-wrap; }
+
+        .copy-btn {
+            background: none; border: 1px solid #333; border-radius: 6px;
+            color: #555; font-size: 0.75rem; padding: 4px 10px; cursor: pointer;
+            transition: all 0.2s; font-family: 'Outfit', sans-serif;
+        }
+        .copy-btn:hover { color: #ffd700; border-color: #ffd700; }
+        .copy-btn.copied { color: #4ade80; border-color: #4ade80; }
+
+        .note {
+            background: rgba(255, 215, 0, 0.03); border-left: 3px solid #ffd700;
+            padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0;
+            font-size: 0.9rem; color: #aaa;
+        }
+        .note strong { color: #ffd700; }
+
+        .gallery {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem; margin-top: 1.5rem;
+        }
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 16/9; background: #111;
+            border-radius: 12px; overflow: hidden;
+            border: 1px solid #1a1a1a;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: #ffd700;
+        }
+        .gallery-item img {
+            width: 100%; height: 100%; object-fit: cover;
+            display: block; opacity: 0.8; transition: opacity 0.3s;
+        }
+        .gallery-item:hover img { opacity: 1; }
+        .gallery-item .caption {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 10px; background: rgba(0,0,0,0.8);
+            font-size: 0.8rem; color: #ffd700; text-align: center;
+            transform: translateY(100%); transition: transform 0.3s;
+        }
+        .gallery-item:hover .caption { transform: translateY(0); }
+
+        .page-footer {
+            text-align: center; padding: 60px 0; color: #333; font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .page-header { padding: 100px 1.5rem 60px; }
+            .block { padding: 40px 0; }
+        }
+    </style>
+</head>
+
+<body class="is-subpage">
+    <nav id="navbar" class="scrolled">
+        <div class="nav-content">
+            <a href="index.html" class="logo">RK<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <a href="index.html" class="back-link" style="display: none;"><i class="fas fa-arrow-left"></i> Portfolio</a>
+
+    <div class="page-header">
+        <h1>Self-Hosting on <span style="color: #ffd700;">Raspberry Pi 5</span></h1>
+        <p>A zero-cost, no-port-forwarding web hosting setup running raunakkushwaha.tech from home.</p>
+    </div>
+
+    <div class="content">
+
+        <div class="block">
+            <h2>Overview</h2>
+            <p>I set up my personal website <strong style="color:#fff;">raunakkushwaha.tech</strong> running entirely from a Raspberry Pi 5 at home — no port forwarding, no static IP, no paid hosting. Cloudflare Tunnel creates a secure outbound connection, keeping my home IP hidden while serving the site globally over HTTPS.</p>
+        </div>
+
+        <div class="block">
+            <h2>Stack</h2>
+            <div class="stack-row">
+                <div class="stack-item">
+                    <span class="label">Hardware</span>
+                    <span class="value">Raspberry Pi 5</span>
+                </div>
+                <div class="stack-item">
+                    <span class="label">OS</span>
+                    <span class="value">Pi OS Lite</span>
+                </div>
+                <div class="stack-item">
+                    <span class="label">Web Server</span>
+                    <span class="value">Nginx</span>
+                </div>
+                <div class="stack-item">
+                    <span class="label">Tunnel</span>
+                    <span class="value">Cloudflare</span>
+                </div>
+                <div class="stack-item">
+                    <span class="label">Domain</span>
+                    <span class="value">get.tech</span>
+                </div>
+                <div class="stack-item">
+                    <span class="label">SSL</span>
+                    <span class="value">Auto HTTPS</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="block">
+            <h2>Quick Setup</h2>
+            <div class="cmd">
+                <div class="top"><span>One-liner</span><span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button></span></div>
+                <code>curl -fsSL https://raw.githubusercontent.com/ITSWRDO/pi-setup/main/setup.sh | bash</code>
+            </div>
+            <div class="note">
+                <strong>⚠ Security:</strong> Always inspect scripts before running them with elevated privileges.
+            </div>
+        </div>
+
+        <div class="block">
+            <h2>Commands</h2>
+            <div class="cmd">
+                <div class="top"><span>Tunnel Management</span><span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button></span></div>
+                <code>sudo systemctl restart cloudflared
+cloudflared tunnel info raunak-pi</code>
+            </div>
+            <div class="cmd">
+                <div class="top"><span>Nginx</span><span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button></span></div>
+                <code>sudo nginx -t
+sudo systemctl reload nginx</code>
+            </div>
+            <div class="cmd">
+                <div class="top"><span>Permissions Fix</span><span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button></span></div>
+                <code>sudo chmod 755 /home/wrdo/
+sudo chown -R www-data:www-data /home/wrdo/123/</code>
+            </div>
+        </div>
+
+        <div class="block">
+            <h2>Gallery</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="ras.jpg" alt="Raspberry Pi 5 Setup">
+                    <div class="caption">Raspberry Pi 5 Server</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="ras1.jpg" alt="Hardware Configuration">
+                    <div class="caption">Power & Cooling</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="ras2.jpg" alt="Deployment Console">
+                    <div class="caption">Tunnel & Nginx Status</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Raunak Kushwaha. All rights reserved.</p>
+                <div class="socials">
+                    <a href="https://github.com/ITSWRDO" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:raunakkushwaha077@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Emergency visibility fallback
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.fade-up, .gallery-item, .block').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                });
+            }, 1000);
+        });
+
+        function copyCode(btn) {
+            const code = btn.closest('.cmd').querySelector('code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Engineering | Raunak Kushwaha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: #0a0a0a; color: #fff; font-family: 'Outfit', sans-serif; margin: 0; }
+
+        .page-header {
+            padding: 120px 0 80px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .page-header h1 { font-size: clamp(2rem, 6vw, 3.5rem); margin-bottom: 1rem; }
+        .page-header p { color: #888; max-width: 600px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6; }
+
+        .back-link {
+            position: fixed; top: 2rem; left: 2rem; z-index: 100;
+            color: #888; text-decoration: none; font-weight: 600;
+            display: flex; align-items: center; gap: 8px; font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: #ffd700; }
+
+        .content { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
+
+        .block {
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .block:last-child { border-bottom: none; }
+
+        .block h2 {
+            font-size: 1.1rem; text-transform: uppercase; letter-spacing: 3px;
+            color: #ffd700; margin-bottom: 2rem; font-weight: 600;
+        }
+
+        .block p, .block li { color: #aaa; line-height: 1.8; font-size: 1rem; }
+
+        .skills-grid-simple {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        .skill-entry {
+            border-left: 2px solid #ffd700;
+            padding-left: 1.5rem;
+        }
+        .skill-entry h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .skill-entry p {
+            font-size: 0.95rem;
+            color: #888;
+            line-height: 1.6;
+        }
+
+
+
+        .gallery {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem; margin-top: 1.5rem;
+        }
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 16/9; background: #111;
+            border-radius: 12px; overflow: hidden;
+            border: 1px solid #1a1a1a;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: #ffd700;
+        }
+        .gallery-item img {
+            width: 100%; height: 100%; object-fit: cover;
+            display: block; opacity: 0.8; transition: opacity 0.3s;
+        }
+        .gallery-item:hover img { opacity: 1; }
+        .gallery-item .caption {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 10px; background: rgba(0,0,0,0.8);
+            font-size: 0.8rem; color: #ffd700; text-align: center;
+            transform: translateY(100%); transition: transform 0.3s;
+        }
+        .gallery-item:hover .caption { transform: translateY(0); }
+
+        .video-container {
+            width: 100%; aspect-ratio: 16/9;
+            background: #000; border-radius: 16px;
+            overflow: hidden; border: 1px solid var(--border);
+            margin-top: 1.5rem;
+        }
+        .video-container video { width: 100%; height: 100%; object-fit: cover; }
+
+        @media (max-width: 600px) {
+            .page-header { padding: 100px 1.5rem 60px; }
+            .block { padding: 40px 0; }
+        }
+    </style>
+</head>
+
+<body class="is-subpage">
+    <nav id="navbar" class="scrolled">
+        <div class="nav-content">
+            <a href="index.html" class="logo">RK<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <a href="index.html" class="back-link" style="display: none;"><i class="fas fa-arrow-left"></i> Portfolio</a>
+
+    <div class="page-header fade-up">
+        <h1>Drone <span style="color: #ffd700;">Engineering</span></h1>
+        <p>Designing, building, and flight-testing custom UAVs with optimized performance and telemetry systems.</p>
+    </div>
+
+    <div class="content">
+
+        <div class="block fade-up">
+            <h2>Core Skills</h2>
+            <div class="skills-grid-simple">
+                <div class="skill-entry">
+                    <h3>Custom Frames</h3>
+                    <p>Lightweight, durable frames optimized for specific flight profiles and payloads.</p>
+                </div>
+                <div class="skill-entry">
+                    <h3>Flight Controllers</h3>
+                    <p>PID tuning on Betaflight and ArduPilot for stable, responsive flight.</p>
+                </div>
+                <div class="skill-entry">
+                    <h3>Telemetry & FPV</h3>
+                    <p>Long-range radio links and low-latency video transmission for real-time control.</p>
+                </div>
+                <div class="skill-entry">
+                    <h3>Power Systems</h3>
+                    <p>LiPo battery management and ESC/Motor optimization for maximum efficiency.</p>
+                </div>
+                <div class="skill-entry">
+                    <h3>Aeronautics</h3>
+                    <p>Lift, drag, and thrust principles for improved stability and endurance.</p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="block fade-up">
+            <h2>Flight Showcase</h2>
+            <div class="video-container">
+                <video controls poster="drone3.jpg">
+                    <source src="drone.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <div class="block fade-up">
+            <h2>Build Gallery</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="drone1.jpg" alt="Drone Build Phase 1">
+                    <div class="caption">Frame & Motors</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="drone2.jpg" alt="Drone Build Phase 2">
+                    <div class="caption">Electronics Stack</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="drone3.jpg" alt="Drone Build Phase 3">
+                    <div class="caption">Wiring Detail</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="drone4.jpg" alt="Drone Build Phase 4">
+                    <div class="caption">Telemetry Setup</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Raunak Kushwaha. All rights reserved.</p>
+                <div class="socials">
+                    <a href="https://github.com/ITSWRDO" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:raunakkushwaha077@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Emergency visibility fallback
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.fade-up, .gallery-item').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

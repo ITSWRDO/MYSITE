@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML & CSS Cheatsheet | Raunak Kushwaha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-dark">
+    <div class="container" style="max-width: 900px; padding: 60px 20px;">
+        <a href="index.html" class="btn-text" style="margin-bottom: 40px; display: inline-flex; align-items: center; gap: 10px;">
+            <i class="fas fa-arrow-left"></i> Back to Portfolio
+        </a>
+
+        <header style="margin-bottom: 60px;">
+            <h1 style="font-size: 3.5rem; margin-bottom: 10px;">HTML & <span class="highlight">CSS</span> Help</h1>
+            <p style="color: var(--text-muted); font-size: 1.2rem;">A curated collection of essential web building blocks and styles.</p>
+        </header>
+
+        <section style="margin-bottom: 60px;">
+            <h2 style="margin-bottom: 20px;"><i class="fas fa-code"></i> Essential HTML5</h2>
+            <div class="command-box">
+                <header><span>Basic Structure</span><span>HTML</span></header>
+                <code>&lt;!DOCTYPE html&gt;<br>&lt;html lang="en"&gt;<br>&lt;head&gt;...&lt;/head&gt;<br>&lt;body&gt;...&lt;/body&gt;</code>
+            </div>
+            <div class="help-note">
+                <i class="fas fa-info-circle"></i>
+                <strong>Tip:</strong> Use semantic tags like <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, and <code>&lt;article&gt;</code> for better SEO.
+            </div>
+        </section>
+
+        <section style="margin-bottom: 60px;">
+            <h2 style="margin-bottom: 20px;"><i class="fas fa-paint-brush"></i> Modern CSS3</h2>
+            <div class="command-box">
+                <header><span>Flexbox Centering</span><span>CSS</span></header>
+                <code>display: flex;<br>justify-content: center;<br>align-items: center;</code>
+            </div>
+            <div class="command-box">
+                <header><span>CSS Grid Layout</span><span>CSS</span></header>
+                <code>display: grid;<br>grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));<br>gap: 20px;</code>
+            </div>
+            <div class="help-note">
+                <i class="fas fa-lightbulb"></i>
+                <strong>Pro Tip:</strong> Use CSS Variables (Custom Properties) for easy theme management.
+            </div>
+        </section>
+
+        <section>
+            <h2 style="margin-bottom: 20px;"><i class="fas fa-mobile-alt"></i> Responsiveness</h2>
+            <div class="command-box">
+                <header><span>Media Query</span><span>CSS</span></header>
+                <code>@media (max-width: 768px) {<br>&nbsp;&nbsp;.container { width: 100%; }<br>}</code>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

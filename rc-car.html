@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino RC Car | Raunak Kushwaha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: #0a0a0a; color: #fff; font-family: 'Outfit', sans-serif; margin: 0; }
+        .is-subpage #navbar { background: rgba(8, 8, 8, 0.95); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .page-header { padding: 160px 0 80px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .page-header h1 { font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 1rem; font-weight: 800; }
+        .page-header p { color: #888; max-width: 650px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6; }
+
+        .content { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+        .block { padding: 80px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .block:last-child { border-bottom: none; }
+        .block h2 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 3px; color: #ffd700; margin-bottom: 3rem; font-weight: 600; text-align: center; }
+
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        .feature-card {
+            background: #111; border: 1px solid #1a1a1a; border-radius: 16px;
+            padding: 2.5rem; text-align: center; transition: all 0.3s ease;
+        }
+        .feature-card:hover { border-color: #ffd700; transform: translateY(-5px); }
+        .feature-card i { font-size: 2.5rem; color: #ffd700; margin-bottom: 1.5rem; display: block; }
+        .feature-card h3 { font-size: 1.3rem; margin-bottom: 1rem; color: #fff; }
+        .feature-card p { font-size: 0.95rem; color: #888; line-height: 1.6; }
+
+        .gallery {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem; margin-top: 3rem;
+        }
+        .gallery-item {
+            position: relative; aspect-ratio: 16/9; background: #111;
+            border-radius: 16px; overflow: hidden; border: 1px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+        .gallery-item:hover { border-color: #ffd700; transform: translateY(-5px); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s; }
+        .gallery-item:hover img { opacity: 1; }
+        .gallery-item .caption {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 1.5rem; background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            font-size: 0.9rem; color: #ffd700; font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+            .page-header { padding: 120px 1.5rem 60px; }
+            .block { padding: 50px 0; }
+        }
+    </style>
+</head>
+
+<body class="is-subpage">
+    <nav id="navbar" class="scrolled">
+        <div class="nav-content">
+            <a href="index.html" class="logo">RK<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header fade-up">
+        <h1>PWM <span style="color: #ffd700;">RC Car</span></h1>
+        <p>A sophisticated mobile robotics platform engineered with custom PWM motor driver logic for precision steering and speed control.</p>
+    </div>
+
+    <div class="content">
+        <div class="block fade-up">
+            <h2>Technical Features</h2>
+            <div class="car-grid">
+                <div class="feature-card">
+                    <i class="fas fa-microchip"></i>
+                    <h3>PWM Motor Logic</h3>
+                    <p>Utilizing Pulse Width Modulation (PWM) to achieve variable speed control and smooth acceleration/deceleration curves across all four motors.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fab fa-bluetooth"></i>
+                    <h3>Bluetooth Control</h3>
+                    <p>Low-latency manual control via the HC-05 module, allowing for real-time adjustments through a custom-coded mobile interface.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="block fade-up">
+            <h2>Hardware Showcase</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="arduino car.jpg" alt="Arduino RC Car Chassis">
+                    <div class="caption">Final Chassis & Electronics Integration</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="arduinocar1.jpg" alt="Motor Wiring Detail">
+                    <div class="caption">H-Bridge Driver & PWM Wiring Detail</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Raunak Kushwaha. All rights reserved.</p>
+                <div class="socials">
+                    <a href="https://github.com/ITSWRDO" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:raunakkushwaha077@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.fade-up').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

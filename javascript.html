@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Cheatsheet | Raunak Kushwaha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Smooth Scroll & Animations -->
+    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body class="bg-dark">
+    <div class="container" style="max-width: 900px; padding: 60px 20px;">
+        <a href="index.html" class="btn-text" style="margin-bottom: 40px; display: inline-flex; align-items: center; gap: 10px;">
+            <i class="fas fa-arrow-left"></i> Back to Portfolio
+        </a>
+
+        <header style="margin-bottom: 60px;">
+            <h1 style="font-size: 3.5rem; margin-bottom: 10px;">Java<span class="highlight">Script</span> Mastery</h1>
+            <p style="color: var(--text-muted); font-size: 1.2rem;">Essential logic and modern JS snippets for dynamic applications.</p>
+        </header>
+
+        <section style="margin-bottom: 60px;">
+            <h2 style="margin-bottom: 20px;"><i class="fab fa-js-square"></i> Modern ES6+</h2>
+            <div class="command-box">
+                <header><span>Arrow Functions</span><span>JS</span></header>
+                <code>const multiply = (a, b) => a * b;</code>
+            </div>
+            <div class="command-box">
+                <header><span>Destructuring</span><span>JS</span></header>
+                <code>const { name, age } = user;<br>const [first, second] = colors;</code>
+            </div>
+            <div class="help-note">
+                <i class="fas fa-info-circle"></i>
+                <strong>Tip:</strong> Always use <code>const</code> by default, and <code>let</code> only if you need to reassign variables.
+            </div>
+        </section>
+
+        <section style="margin-bottom: 60px;">
+            <h2 style="margin-bottom: 20px;"><i class="fas fa-sync-alt"></i> Asynchronous JS</h2>
+            <div class="command-box">
+                <header><span>Fetch API</span><span>JS</span></header>
+                <code>const data = await fetch(url).then(r => r.json());</code>
+            </div>
+            <div class="command-box">
+                <header><span>Async/Await</span><span>JS</span></header>
+                <code>async function getData() {<br>&nbsp;&nbsp;try { ... } catch (err) { ... }<br>}</code>
+            </div>
+        </section>
+
+        <section>
+            <h2 style="margin-bottom: 20px;"><i class="fas fa-layer-group"></i> DOM Interaction</h2>
+            <div class="command-box">
+                <header><span>Select & Modify</span><span>JS</span></header>
+                <code>const el = document.querySelector('.tag');<br>el.textContent = 'Hello World';<br>el.classList.add('active');</code>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

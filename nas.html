@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raspberry Pi NAS | Raunak Kushwaha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: #0a0a0a; color: #fff; font-family: 'Outfit', sans-serif; margin: 0; }
+        .is-subpage #navbar { background: rgba(8, 8, 8, 0.95); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .page-header { padding: 160px 0 80px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .page-header h1 { font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 1rem; font-weight: 800; }
+        .page-header p { color: #888; max-width: 650px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6; }
+        .content { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+        .block { padding: 80px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .block h2 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 3px; color: #ffd700; margin-bottom: 2rem; font-weight: 600; }
+        
+        .cmd {
+            background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 10px;
+            padding: 1.2rem 1.5rem; margin: 1.2rem 0; font-family: 'Consolas', 'Courier New', monospace;
+            overflow-x: auto; position: relative;
+        }
+        .cmd code { color: #ffd700; font-size: 0.9rem; white-space: pre-wrap; }
+        
+        .note {
+            background: rgba(255, 215, 0, 0.03); border-left: 3px solid #ffd700;
+            padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0;
+            font-size: 0.9rem; color: #aaa;
+        }
+        .note strong { color: #ffd700; }
+
+        .step-list { list-style: none; padding: 0; }
+        .step-list li { margin-bottom: 1.5rem; padding-left: 1.5rem; border-left: 1px solid #333; }
+        .step-list h3 { font-size: 1rem; color: #fff; margin-bottom: 0.5rem; }
+
+        .gallery {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem; margin-top: 2rem;
+        }
+        .gallery-item {
+            position: relative; aspect-ratio: 16/9; background: #111;
+            border-radius: 16px; overflow: hidden; border: 1px solid #1a1a1a;
+        }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s; }
+        .gallery-item:hover img { opacity: 1; }
+        .gallery-item .caption {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 15px; background: rgba(0,0,0,0.85);
+            font-size: 0.85rem; color: #ffd700; text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .page-header { padding: 120px 1.5rem 60px; }
+            .block { padding: 50px 0; }
+        }
+    </style>
+</head>
+
+<body class="is-subpage">
+    <nav id="navbar" class="scrolled">
+        <div class="nav-content">
+            <a href="index.html" class="logo">RK<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header fade-up">
+        <h1>Raspberry Pi <span style="color: #ffd700;">NAS (OMV)</span></h1>
+        <p>A complete, dedicated NAS solution with a web GUI, supporting SMB/CIFS, (S)FTP, and RSync out of the box.</p>
+    </div>
+
+    <div class="content">
+        <div class="block fade-up">
+            <h2>Overview</h2>
+            <p>OpenMediaVault (OMV) is a next-generation network attached storage (NAS) solution based on Debian Linux. It contains services like SSH, (S)FTP, SMB/CIFS, DAAP media server, RSync, BitTorrent client and many more. It's an out-of-the-box solution that transforms your Raspberry Pi into a professional-grade storage server.</p>
+            <div class="note">
+                <strong>💡 Note:</strong> OMV dedicates your Pi to NAS duty; running other complex software alongside it can break the installation.
+            </div>
+        </div>
+
+        <div class="block fade-up">
+            <h2>Terminal Setup</h2>
+            <div class="step-list">
+                <li>
+                    <h3>1. Update the System</h3>
+                    <div class="cmd"><code>sudo apt update && sudo apt upgrade -y</code></div>
+                </li>
+                <li>
+                    <h3>2. Run the Pre-Install Script</h3>
+                    <p>Sets up a persistent Ethernet connection to avoid connectivity issues:</p>
+                    <div class="cmd"><code>wget -O - https://raw.githubusercontent.com/OpenMediaVault-Plugin-Developers/installScript/master/preinstall | sudo bash</code></div>
+                </li>
+                <li>
+                    <h3>3. Install OMV</h3>
+                    <p>This installs everything needed. Takes several minutes.</p>
+                    <div class="cmd"><code>wget -O - https://raw.githubusercontent.com/OpenMediaVault-Plugin-Developers/installScript/master/install | sudo bash</code></div>
+                </li>
+            </div>
+        </div>
+
+        <div class="block fade-up">
+            <h2>Web UI Configuration</h2>
+            <p>Access the interface at <code>http://&lt;YOUR_PI_IP&gt;</code> (Default: admin / openmediavault).</p>
+            <div class="step-list" style="margin-top: 2rem;">
+                <li>
+                    <h3>Storage Setup</h3>
+                    <p>Go to <strong>Storage > Disks</strong> to verify your drive, then <strong>File Systems</strong> to create an EXT4 partition and mount it.</p>
+                </li>
+                <li>
+                    <h3>Sharing</h3>
+                    <p>Create a <strong>Shared Folder</strong>, then enable the <strong>SMB/CIFS</strong> service to make the drive visible on your Windows/Mac network.</p>
+                </li>
+            </div>
+            <div class="note">
+                <strong>⚠ Security:</strong> Change the default admin password immediately after your first login.
+            </div>
+        </div>
+
+        <div class="block fade-up">
+            <h2>Hardware Showcase</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="nas1 (1).jpg" alt="Pi NAS Internal">
+                    <div class="caption">OMV Server Hardware Integration</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="nas1 (2).jpg" alt="Pi NAS External">
+                    <div class="caption">Storage Controller & Cooling</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Raunak Kushwaha. All rights reserved.</p>
+                <div class="socials">
+                    <a href="https://github.com/ITSWRDO" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:raunakkushwaha077@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.fade-up, .gallery-item').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
